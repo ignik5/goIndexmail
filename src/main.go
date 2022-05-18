@@ -122,6 +122,20 @@ func parseInNumber(all string) string {
 }
 func main() {
 	readFile("000000000.txt")
-	readFile("123456790.txt")
+	readFile("111111111.txt")
+	readFile("222222222.txt")
+	readFile("333333333.txt")
+	readFile("444444444.txt")
+	readFile("555555555.txt")
+	readFile("666666666.txt")
+	readFile("777777777.txt")
+	readFile("888888888.txt")
+	readFile("999999999.txt")
+
 	readFile("123456789.txt")
+
+	readFile("123456790.txt")
+
+	readFile("error.txt")
+
 }
