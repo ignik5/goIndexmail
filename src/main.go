@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func ChunksSlower(s string, chunkSize int) []string {
+func сhunksSlower(s string, chunkSize int) []string {
 	if chunkSize >= len(s) {
 		return []string{s}
 	}
@@ -43,7 +43,7 @@ func readFile(nametxt string) {
 	i := 0
 	for fileScanner.Scan() {
 		fmt.Println(fileScanner.Text())
-		stringIndex = ChunksSlower(fileScanner.Text(), 3)
+		stringIndex = сhunksSlower(fileScanner.Text(), 3)
 		j := 0
 		arrayStringIndex := []string{}
 		for _, stringIndex1 := range stringIndex {
