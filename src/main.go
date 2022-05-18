@@ -28,12 +28,12 @@ func ChunksSlower(s string, chunkSize int) []string {
 	return chunks
 }
 
-func readFile() {
-
-	file, err := os.Open("index.txt")
+func readFile(nametxt string) {
+	textnametxt := "text/" + nametxt
+	file, err := os.Open(textnametxt)
 
 	if err != nil {
-		log.Fatalf("Error when opening file: %s", err)
+		log.Fatalf("Error when opening file : %s", err)
 	}
 
 	fileScanner := bufio.NewScanner(file)
@@ -57,7 +57,7 @@ func readFile() {
 	}
 	readArrayIndex(arraySliceIndex)
 	if err := fileScanner.Err(); err != nil {
-		log.Fatalf("Error while reading file: %s", err)
+		log.Fatalf("Error while reading file : %s", err)
 	}
 
 	file.Close()
@@ -79,6 +79,7 @@ func readArrayIndex(arraySliceIndex [][]string) {
 	}
 
 	fmt.Printf("=> %s", indexstring)
+	fmt.Println("\t")
 }
 
 func parseInNumber(all string) string {
@@ -115,10 +116,12 @@ func parseInNumber(all string) string {
 		return "0"
 
 	default:
-		return ""
+		return "?"
 	}
 
 }
 func main() {
-	readFile()
+	readFile("000000000.txt")
+	readFile("123456790.txt")
+	readFile("123456789.txt")
 }
