@@ -111,7 +111,7 @@ func parseInNumber(all string) string {
 	case " _ |_| _|":
 		return "9"
 
-	case " _| ||_|":
+	case " _ | ||_|":
 		return "0"
 
 	default:
