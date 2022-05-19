@@ -7,6 +7,8 @@ import (
 	"os"
 )
 
+const Directory = "text/"
+
 func сhunksSlower(s string, chunkSize int) []string {
 	if chunkSize >= len(s) {
 		return []string{s}
@@ -29,8 +31,8 @@ func сhunksSlower(s string, chunkSize int) []string {
 }
 
 func readFile(nametxt string) {
-	textnametxt := "text/" + nametxt
-	file, err := os.Open(textnametxt)
+	linkTxt := Directory + nametxt
+	file, err := os.Open(linkTxt)
 
 	if err != nil {
 		log.Fatalf("Error when opening file : %s", err)
@@ -38,19 +40,18 @@ func readFile(nametxt string) {
 
 	fileScanner := bufio.NewScanner(file)
 
-	stringIndex := []string{}
+	stringsIndex := []string{}
 	arraySliceIndex := [][]string{}
 	i := 0
 	for fileScanner.Scan() {
 		fmt.Println(fileScanner.Text())
-		stringIndex = сhunksSlower(fileScanner.Text(), 3)
+		stringsIndex = сhunksSlower(fileScanner.Text(), 3)
 		j := 0
 		arrayStringIndex := []string{}
-		for _, stringIndex1 := range stringIndex {
-			arrayStringIndex = append(arrayStringIndex, stringIndex1)
+		for _, index := range stringsIndex {
+			arrayStringIndex = append(arrayStringIndex, index)
 			j++
 		}
-		//num1 = st[0]
 		arraySliceIndex = append(arraySliceIndex, arrayStringIndex)
 		i++
 
@@ -64,26 +65,29 @@ func readFile(nametxt string) {
 }
 func readArrayIndex(arraySliceIndex [][]string) {
 	i := 0
-	indexstring := ""
+	indexString := ""
+	//9 цифр по 3 части массив
 	for i < 9 {
-		all := ""
+		sumNumber := ""
 
 		for _, s := range arraySliceIndex {
-			all = all + s[i]
-		}
+			//3 части получаем сливаем в 1 строку
+			sumNumber = sumNumber + s[i]
 
-		num := parseInNumber(all)
-		indexstring = indexstring + num
+		}
+		//переводим в цифровой вариант
+		num := parseInNumber(sumNumber)
+		indexString = indexString + num
 		i++
 
 	}
 
-	fmt.Printf("=> %s", indexstring)
+	fmt.Printf("=> %s", indexString)
 	fmt.Println("\t")
 }
 
-func parseInNumber(all string) string {
-	switch all {
+func parseInNumber(sumNumber string) string {
+	switch sumNumber {
 
 	case "     |  |":
 		return "1"
